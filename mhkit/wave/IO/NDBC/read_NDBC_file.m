@@ -64,8 +64,13 @@ end
 datac=cell(datatp);
 datapd=datac{1};
 
-datamat=datac{2};
-matstr=struct(datamat);
+datamat = datac{2};
+
+if class(datamat) == py.NoneType
+    matstr = struct(datamat);
+else
+    matstr = struct();
+end
 
 xx=cell(datapd.axes);
 v=xx{2};
