@@ -36,7 +36,7 @@ jobs:
           - os: macos-15
             matlab-version: R2025b
           - os: windows-2025
-            matlab-version: R2022b
+            matlab-version: R2023b
           - os: windows-2025
             matlab-version: R2025b
 

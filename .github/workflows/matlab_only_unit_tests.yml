@@ -33,16 +33,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # Linux is intentionally omitted, may be added back in the future
+        # Linux is intentionally omitted, may be added back in the future.
         os: [macos-15, windows-2025]
-        matlab-version: [R2022b, R2023a, R2023b, R2024a, R2024b, R2025a, R2025b]
-        exclude:
-          # macos-15 runners are Apple silicon; native Apple silicon MATLAB
-          # starts at R2023b.
-          - os: macos-15
-            matlab-version: R2022b
-          - os: macos-15
-            matlab-version: R2023a
+        matlab-version: [R2023b, R2024a, R2024b, R2025a, R2025b]
 
     steps:
       - name: Check out MHKiT-MATLAB
