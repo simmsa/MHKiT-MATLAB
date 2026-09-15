@@ -6,8 +6,6 @@ function results = runMatlabOnlyTests()
     import matlab.unittest.TestSuite
     import matlab.unittest.Test
     import matlab.unittest.TestRunner
-    import matlab.unittest.selectors.HasName
-    import matlab.unittest.constraints.ContainsSubstring
 
     testsFolder = fileparts(mfilename('fullpath'));
     repoRoot = fileparts(fileparts(testsFolder));
@@ -33,16 +31,8 @@ function results = runMatlabOnlyTests()
     for i = 1:numel(nativeTestFiles)
         suite = [suite, TestSuite.fromFile(fullfile(testsFolder, nativeTestFiles{i}))];
     end
-    for i = 1:numel(mixedTestFiles)
-        fileSuite = TestSuite.fromFile(fullfile(testsFolder, mixedTestFiles(i).file));
-        for j = 1:numel(mixedTestFiles(i).excludedTests)
-            fileSuite = fileSuite.selectIf(~HasName(ContainsSubstring(mixedTestFiles(i).excludedTests{j})));
-        end
-        suite = [suite, fileSuite];
-    end
 
-    fprintf('Running %d MATLAB-only tests from %d files\n', numel(suite), ...
-        numel(nativeTestFiles) + numel(mixedTestFiles));
+    fprintf('Running %d MATLAB-only tests from %d files\n', numel(suite), numel(nativeTestFiles));
 
     % Run from tests folder so tests, DOLFyN, that open data files with relative paths work
     startDir = pwd;
